@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "tagline": "Onde a Cultura Encontra o Palco",
+    "subtitle": "Produção Premium de Shows e Entretenimento ao Vivo"
+  },
+  "home": {
+    "title": "Nossa Equipe",
+    "viewCard": "Ver Cartão"
+  },
+  "card": {
+    "contact": "Contato",
+    "phone": "Telefone",
+    "email": "E-mail",
+    "website": "Website",
+    "location": "Localização",
+    "instagram": "Instagram",
+    "whatsapp": "Conversar no WhatsApp",
+    "saveContact": "Salvar nos Contatos",
+    "deck": "Apresentação",
+    "deckDesc": "CultMix Live — Deck Corporativo",
+    "back": "Voltar"
+  },
+  "lang": {
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  }
+}

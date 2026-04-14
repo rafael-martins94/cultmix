@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "tagline": "Where Culture Meets the Stage",
+    "subtitle": "Premium Show Production & Live Entertainment"
+  },
+  "home": {
+    "title": "Our Team",
+    "viewCard": "View Card"
+  },
+  "card": {
+    "contact": "Contact",
+    "phone": "Phone",
+    "email": "Email",
+    "website": "Website",
+    "location": "Location",
+    "instagram": "Instagram",
+    "whatsapp": "Chat on WhatsApp",
+    "saveContact": "Save to Contacts",
+    "deck": "Company Deck",
+    "deckDesc": "CultMix Live — Presentation",
+    "back": "Back"
+  },
+  "lang": {
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

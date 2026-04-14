@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "tagline": "Donde la Cultura se Encuentra con el Escenario",
+    "subtitle": "Producción Premium de Shows y Entretenimiento en Vivo"
+  },
+  "home": {
+    "title": "Nuestro Equipo",
+    "viewCard": "Ver Tarjeta"
+  },
+  "card": {
+    "contact": "Contacto",
+    "phone": "Teléfono",
+    "email": "Correo",
+    "website": "Sitio Web",
+    "location": "Ubicación",
+    "instagram": "Instagram",
+    "whatsapp": "Chat en WhatsApp",
+    "saveContact": "Guardar en Contactos",
+    "deck": "Presentación",
+    "deckDesc": "CultMix Live — Deck Corporativo",
+    "back": "Volver"
+  },
+  "lang": {
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

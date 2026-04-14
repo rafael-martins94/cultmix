@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "tagline": "Là où la Culture Rencontre la Scène",
+    "subtitle": "Production Premium de Spectacles et Divertissement en Direct"
+  },
+  "home": {
+    "title": "Notre Équipe",
+    "viewCard": "Voir la Carte"
+  },
+  "card": {
+    "contact": "Contact",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "website": "Site Web",
+    "location": "Localisation",
+    "instagram": "Instagram",
+    "whatsapp": "Discuter sur WhatsApp",
+    "saveContact": "Enregistrer dans les Contacts",
+    "deck": "Présentation",
+    "deckDesc": "CultMix Live — Deck de l'Entreprise",
+    "back": "Retour"
+  },
+  "lang": {
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português"
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
+  }
+}
