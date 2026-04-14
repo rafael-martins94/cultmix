@@ -33,15 +33,11 @@ function generateVCard(person, lang) {
   ].join('\n');
 }
 
-function downloadVCard(person, lang) {
+function openVCard(person, lang) {
   const vcard = generateVCard(person, lang);
-  const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${person.name.replace(/\s+/g, '_')}.vcf`;
-  a.click();
-  URL.revokeObjectURL(url);
+  const encoded = encodeURIComponent(vcard);
+  const uri = `data:text/vcard;charset=utf-8,${encoded}`;
+  window.open(uri, '_self');
 }
 
 export default function Card() {
@@ -106,7 +102,7 @@ export default function Card() {
           </a>
           <button
             className="card-action-btn save-btn"
-            onClick={() => downloadVCard(person, lang)}
+            onClick={() => openVCard(person, lang)}
           >
             <UserPlus size={20} />
             <span>{t('card.saveContact')}</span>
