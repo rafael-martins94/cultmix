@@ -1,3 +1,12 @@
+const locationSaoPauloBrazil = {
+  en: 'São Paulo/SP - Brazil 🇧🇷',
+  es: 'São Paulo/SP - Brasil 🇧🇷',
+  fr: 'São Paulo/SP - Brésil 🇧🇷',
+  pt: 'São Paulo/SP - Brasil 🇧🇷',
+};
+
+const instagramCultmix = '@cultmixlive';
+
 export const people = [
   {
     id: 'daniel-klein',
@@ -12,13 +21,8 @@ export const people = [
     phone: '+55 11 94018-2121',
     whatsapp: '5511940182121',
     website: 'https://cultmix.live',
-    instagram: '@danielklein_cultmix',
-    location: {
-      en: 'Miami, FL — USA',
-      es: 'Miami, FL — EE.UU.',
-      fr: 'Miami, FL — États-Unis',
-      pt: 'Miami, FL — EUA',
-    },
+    instagram: instagramCultmix,
+    location: locationSaoPauloBrazil,
   },
   {
     id: 'alex-palaia',
@@ -33,13 +37,9 @@ export const people = [
     photoObjectPosition: 'center top',
     phone: '+55 11 95385-5555',
     whatsapp: '5511953855555',
+    email: 'apalaia@cultmix.live',
     website: 'https://cultmix.live',
-    instagram: '@alexpalaia_cultmix',
-    location: {
-      en: 'New York, NY — USA',
-      es: 'Nueva York, NY — EE.UU.',
-      fr: 'New York, NY — États-Unis',
-      pt: 'Nova York, NY — EUA',
-    },
+    instagram: instagramCultmix,
+    location: locationSaoPauloBrazil,
   },
 ];

@@ -2,7 +2,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Phone,
+  Mail,
   Globe,
+  MapPin,
   UserPlus,
   FileText,
 } from 'lucide-react';
@@ -18,6 +20,27 @@ function WhatsAppIcon() {
   );
 }
 
+function InstagramIcon({ size = 18 }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
 function generateVCard(person, lang) {
   const role = person.role[lang] || person.role.en;
 
@@ -28,7 +51,18 @@ function generateVCard(person, lang) {
     `ORG:CultMix Live`,
     `TITLE:${role}`,
     `TEL;TYPE=CELL:${person.phone}`,
+    ...(person.email ? [`EMAIL;TYPE=INTERNET:${person.email}`] : []),
+    ...(person.instagram
+      ? [
+          `URL;TYPE=Instagram:https://www.instagram.com/${person.instagram.replace(/^@/, '')}/`,
+        ]
+      : []),
     `URL:${person.website}`,
+    ...(person.location
+      ? [
+          `NOTE:${(person.location[lang] || person.location.en).replace(/\n/g, ' ')}`,
+        ]
+      : []),
     'END:VCARD',
   ].join('\n');
 }
@@ -142,6 +176,33 @@ export default function Card() {
             </div>
           </a>
 
+          {person.email ? (
+            <a href={`mailto:${person.email}`} className="card-info-item">
+              <div className="card-info-icon">
+                <Mail size={18} />
+              </div>
+              <div className="card-info-text">
+                <span className="card-info-label">{t('card.email')}</span>
+                <span className="card-info-value">{person.email}</span>
+              </div>
+            </a>
+          ) : null}
+
+          <a
+            href={`https://www.instagram.com/${person.instagram.replace(/^@/, '')}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-info-item"
+          >
+            <div className="card-info-icon">
+              <InstagramIcon size={18} />
+            </div>
+            <div className="card-info-text">
+              <span className="card-info-label">{t('card.instagram')}</span>
+              <span className="card-info-value">{person.instagram}</span>
+            </div>
+          </a>
+
           <a
             href={person.website}
             target="_blank"
@@ -156,6 +217,18 @@ export default function Card() {
               <span className="card-info-value">{person.website}</span>
             </div>
           </a>
+
+          <div className="card-info-item card-info-item--static">
+            <div className="card-info-icon">
+              <MapPin size={18} />
+            </div>
+            <div className="card-info-text">
+              <span className="card-info-label">{t('card.location')}</span>
+              <span className="card-info-value">
+                {person.location[lang] || person.location.en}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
