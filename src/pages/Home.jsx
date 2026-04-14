@@ -34,7 +34,16 @@ export default function Home() {
             <Link to={`/${person.id}`} key={person.id} className="team-card">
               <div className="team-card-avatar">
                 {person.photo ? (
-                  <img src={person.photo} alt={person.name} className="avatar-photo" />
+                  <img
+                    src={person.photo}
+                    alt={person.name}
+                    className="avatar-photo"
+                    style={
+                      person.photoObjectPosition
+                        ? { objectPosition: person.photoObjectPosition }
+                        : undefined
+                    }
+                  />
                 ) : (
                   <span className="avatar-initials">
                     {person.name.split(' ').map((n) => n[0]).join('')}

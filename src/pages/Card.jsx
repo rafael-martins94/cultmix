@@ -77,7 +77,16 @@ export default function Card() {
           <img src="/logo.png" alt="CultMix Live" className="card-logo" />
           <div className="card-avatar">
             {person.photo ? (
-              <img src={person.photo} alt={person.name} className="card-avatar-photo" />
+              <img
+                src={person.photo}
+                alt={person.name}
+                className="card-avatar-photo"
+                style={
+                  person.photoObjectPosition
+                    ? { objectPosition: person.photoObjectPosition }
+                    : undefined
+                }
+              />
             ) : (
               <span className="card-avatar-initials">
                 {person.name.split(' ').map((n) => n[0]).join('')}

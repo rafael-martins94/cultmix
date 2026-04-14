@@ -30,6 +30,7 @@ export const people = [
       pt: 'CEO',
     },
     photo: '/photos/alex.png',
+    photoObjectPosition: 'center top',
     phone: '+55 11 95385-5555',
     whatsapp: '5511953855555',
     website: 'https://cultmix.live',
