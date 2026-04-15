@@ -41,14 +41,35 @@ function InstagramIcon({ size = 18 }) {
   );
 }
 
+function escapeVCardValue(value) {
+  return String(value)
+    .replace(/\\/g, '\\\\')
+    .replace(/\n/g, '\\n')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,');
+}
+
+/** vCard 3.0 N: Family;Given;Additional;Prefix;Suffix */
+function structuredNameFromFullName(fullName) {
+  const parts = fullName.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return ';;;;';
+  if (parts.length === 1) {
+    return `;${escapeVCardValue(parts[0])};;;`;
+  }
+  const family = parts[parts.length - 1];
+  const given = parts.slice(0, -1).join(' ');
+  return `${escapeVCardValue(family)};${escapeVCardValue(given)};;;`;
+}
+
 function generateVCard(person, lang) {
   const role = person.role[lang] || person.role.en;
+  const displayName = escapeVCardValue(person.name);
 
   return [
     'BEGIN:VCARD',
     'VERSION:3.0',
-    `FN:${person.name}`,
-    `ORG:CultMix Live`,
+    `FN:${displayName}`,
+    `N:${structuredNameFromFullName(person.name)}`,
     `TITLE:${role}`,
     `TEL;TYPE=CELL:${person.phone}`,
     ...(person.email ? [`EMAIL;TYPE=INTERNET:${person.email}`] : []),
