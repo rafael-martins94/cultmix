@@ -43,6 +43,23 @@ export const people = [
     location: locationSaoPauloBrazil,
   },
   {
+    id: 'bianca-bueno',
+    name: 'Bianca Bueno',
+    role: {
+      en: 'Head of Creative Partnerships & Strategy',
+      es: 'Directora de Alianzas Creativas y Estrategia',
+      fr: 'Directrice des Partenariats Créatifs et de la Stratégie',
+      pt: 'Head de Parcerias Criativas e Estratégia',
+    },
+    photo: '/photos/bianca.png',
+    photoObjectPosition: 'center top',
+    phone: '+55 21 97931-0345',
+    whatsapp: '5521979310345',
+    website: 'https://cultmix.live',
+    instagram: instagramCultmix,
+    location: locationSaoPauloBrazil,
+  },
+  {
     id: 'rafael-galbes',
     name: 'Rafael Galbes',
     role: {
