@@ -94,6 +94,44 @@
   border-color: rgba(255, 255, 255, 0.25);
 }
 
+.card-qr-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  min-height: 300px;
+  margin: 0 auto;
+}
+
+.card-qr-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+.card-qr-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-top-color: #00d4ff;
+  border-radius: 50%;
+  animation: card-qr-spin 0.8s linear infinite;
+}
+
+@keyframes card-qr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .card-qr-image {
   display: block;
   width: 100%;
@@ -102,6 +140,11 @@
   margin: 0 auto;
   border-radius: 12px;
   background: #fff;
+  transition: opacity 0.2s ease;
+}
+
+.card-qr-image--loading {
+  opacity: 0;
 }
 
 .card-qr-desc {
@@ -134,6 +177,13 @@
   background: rgba(255, 255, 255, 0.14);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-qr-download:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .card-hero-content {

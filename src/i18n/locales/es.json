@@ -19,6 +19,7 @@
     "qrCode": "Código QR",
     "qrCodeDesc": "Escanea para abrir esta tarjeta",
     "downloadQr": "Descargar código QR",
+    "qrLoading": "Cargando código QR...",
     "close": "Cerrar",
     "deck": "Presentación",
     "deckDesc": "CultMix Live — Deck Corporativo",

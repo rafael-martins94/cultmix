@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -125,8 +125,17 @@ export default function Card() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const [showQr, setShowQr] = useState(false);
+  const [qrLoading, setQrLoading] = useState(true);
 
   const person = people.find((p) => p.id === id);
+  const cardUrl = person ? `${window.location.origin}/${id}` : '';
+  const qrCodeUrl = cardUrl ? getQrCodeUrl(cardUrl) : '';
+
+  useEffect(() => {
+    if (showQr) {
+      setQrLoading(true);
+    }
+  }, [showQr, qrCodeUrl]);
 
   if (!person) {
     return (
@@ -140,8 +149,6 @@ export default function Card() {
   }
 
   const role = person.role[lang] || person.role.en;
-  const cardUrl = `${window.location.origin}/${id}`;
-  const qrCodeUrl = getQrCodeUrl(cardUrl);
 
   return (
     <div className="card-page">
@@ -315,17 +322,28 @@ export default function Card() {
             aria-modal="true"
             aria-label={t('card.qrCode')}
           >
-            <img
-              src={qrCodeUrl}
-              alt={t('card.qrCode')}
-              className="card-qr-image"
-              width={300}
-              height={300}
-            />
+            <div className="card-qr-image-wrap">
+              {qrLoading ? (
+                <div className="card-qr-loading" aria-live="polite">
+                  <div className="card-qr-spinner" aria-hidden />
+                  <span>{t('card.qrLoading')}</span>
+                </div>
+              ) : null}
+              <img
+                src={qrCodeUrl}
+                alt={t('card.qrCode')}
+                className={`card-qr-image ${qrLoading ? 'card-qr-image--loading' : ''}`}
+                width={300}
+                height={300}
+                onLoad={() => setQrLoading(false)}
+                onError={() => setQrLoading(false)}
+              />
+            </div>
             <p className="card-qr-desc">{t('card.qrCodeDesc')}</p>
             <button
               type="button"
               className="card-qr-download"
+              disabled={qrLoading}
               onClick={() => downloadQrCode(qrCodeUrl, `${id}-qrcode.png`)}
             >
               <Download size={18} />
