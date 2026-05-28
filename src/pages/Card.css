@@ -27,27 +27,26 @@
 }
 
 .card-qr-btn {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 3;
-  width: 44px;
-  height: 44px;
+  position: fixed;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .card-qr-btn:hover {
   background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(0, 212, 255, 0.25);
-  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .card-qr-overlay {

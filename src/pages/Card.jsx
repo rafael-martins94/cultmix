@@ -145,6 +145,15 @@ export default function Card() {
 
   return (
     <div className="card-page">
+      <button
+        type="button"
+        className="card-qr-btn"
+        onClick={() => setShowQr(true)}
+        aria-label={t('card.qrCode')}
+      >
+        <QrCode size={16} />
+      </button>
+
       <div className="card-hero">
         <div className="aurora-bg">
           <Aurora
@@ -155,15 +164,6 @@ export default function Card() {
           />
         </div>
         <div className="card-hero-overlay" />
-
-        <button
-          type="button"
-          className="card-qr-btn"
-          onClick={() => setShowQr(true)}
-          aria-label={t('card.qrCode')}
-        >
-          <QrCode size={22} />
-        </button>
 
         <div className="card-hero-content">
           <img src="/logo.png" alt="CultMix Live" className="card-logo" />
