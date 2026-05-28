@@ -16,6 +16,10 @@
     "instagram": "Instagram",
     "whatsapp": "Chat en WhatsApp",
     "saveContact": "Guardar en Contactos",
+    "qrCode": "Código QR",
+    "qrCodeDesc": "Escanea para abrir esta tarjeta",
+    "downloadQr": "Descargar código QR",
+    "close": "Cerrar",
     "deck": "Presentación",
     "deckDesc": "CultMix Live — Deck Corporativo",
     "back": "Volver"

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,6 +8,9 @@ import {
   MapPin,
   UserPlus,
   FileText,
+  QrCode,
+  X,
+  Download,
 } from 'lucide-react';
 import Aurora from '../components/Aurora/Aurora';
 import { people } from '../data/people';
@@ -101,10 +105,26 @@ function openVCard(person, lang) {
   window.open(uri, '_self');
 }
 
+function getQrCodeUrl(data) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data)}`;
+}
+
+async function downloadQrCode(url, filename) {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const blobUrl = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = blobUrl;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(blobUrl);
+}
+
 export default function Card() {
   const { id } = useParams();
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+  const [showQr, setShowQr] = useState(false);
 
   const person = people.find((p) => p.id === id);
 
@@ -120,6 +140,8 @@ export default function Card() {
   }
 
   const role = person.role[lang] || person.role.en;
+  const cardUrl = `${window.location.origin}/${id}`;
+  const qrCodeUrl = getQrCodeUrl(cardUrl);
 
   return (
     <div className="card-page">
@@ -133,6 +155,15 @@ export default function Card() {
           />
         </div>
         <div className="card-hero-overlay" />
+
+        <button
+          type="button"
+          className="card-qr-btn"
+          onClick={() => setShowQr(true)}
+          aria-label={t('card.qrCode')}
+        >
+          <QrCode size={22} />
+        </button>
 
         <div className="card-hero-content">
           <img src="/logo.png" alt="CultMix Live" className="card-logo" />
@@ -262,6 +293,47 @@ export default function Card() {
       <footer className="card-footer">
         <p>&copy; {new Date().getFullYear()} CultMix Live. {t('footer.rights')}</p>
       </footer>
+
+      {showQr ? (
+        <div
+          className="card-qr-overlay"
+          onClick={() => setShowQr(false)}
+          role="presentation"
+        >
+          <button
+            type="button"
+            className="card-qr-close"
+            onClick={() => setShowQr(false)}
+            aria-label={t('card.close')}
+          >
+            <X size={16} />
+          </button>
+          <div
+            className="card-qr-modal"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('card.qrCode')}
+          >
+            <img
+              src={qrCodeUrl}
+              alt={t('card.qrCode')}
+              className="card-qr-image"
+              width={300}
+              height={300}
+            />
+            <p className="card-qr-desc">{t('card.qrCodeDesc')}</p>
+            <button
+              type="button"
+              className="card-qr-download"
+              onClick={() => downloadQrCode(qrCodeUrl, `${id}-qrcode.png`)}
+            >
+              <Download size={18} />
+              <span>{t('card.downloadQr')}</span>
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
