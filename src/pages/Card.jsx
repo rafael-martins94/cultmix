@@ -41,6 +41,8 @@ function InstagramIcon({ size = 18 }) {
   );
 }
 
+const VCARD_COMPANY_LABEL = 'CultMix Live';
+
 function escapeVCardValue(value) {
   return String(value)
     .replace(/\\/g, '\\\\')
@@ -49,21 +51,25 @@ function escapeVCardValue(value) {
     .replace(/,/g, '\\,');
 }
 
-/** vCard 3.0 N: Family;Given;Additional;Prefix;Suffix */
+/** vCard 3.0 N: Family;Given;Additional;Prefix;Suffix — company in Additional */
 function structuredNameFromFullName(fullName) {
   const parts = fullName.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return ';;;;';
+  const org = escapeVCardValue(VCARD_COMPANY_LABEL);
+  if (parts.length === 0) {
+    return `;;;${org};;`;
+  }
   if (parts.length === 1) {
-    return `;${escapeVCardValue(parts[0])};;;`;
+    return `;${escapeVCardValue(parts[0])};${org};;`;
   }
   const family = parts[parts.length - 1];
   const given = parts.slice(0, -1).join(' ');
-  return `${escapeVCardValue(family)};${escapeVCardValue(given)};;;`;
+  return `${escapeVCardValue(family)};${escapeVCardValue(given)};${org};;`;
 }
 
 function generateVCard(person, lang) {
   const role = person.role[lang] || person.role.en;
-  const displayName = escapeVCardValue(person.name);
+  const formattedName = `${person.name} - ${VCARD_COMPANY_LABEL}`;
+  const displayName = escapeVCardValue(formattedName);
 
   return [
     'BEGIN:VCARD',
